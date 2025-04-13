@@ -1,0 +1,79 @@
+mat-toolbar {
+  background-color: #0052cc;
+}
+
+mat-toolbar button {
+  color: white;
+  transition: background-color 0.3s, color 0.3s; 
+}
+
+mat-toolbar button:hover {
+  background-color: white; 
+  color: #0052cc;        
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.home-content {
+  text-align: center;
+}
+
+.footer {
+  background-color: #ff1e1e;     
+  color: white;              
+  text-align: center;        
+  padding: 15px 0;           
+  position: fixed;           
+  width: 100%;               
+  bottom: 0;                 
+  font-weight: bold;
+}
+
+body {
+  background-image: linear-gradient(#f5f5f5 1px, transparent 1px),
+                    linear-gradient(90deg, #f5f5f5 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.home-content {
+  text-align: center;
+  padding: 200px;
+  background-image: linear-gradient(#f5f5f5 1px, transparent 1px),
+                    linear-gradient(90deg, #f5f5f5 1px, transparent 1px);
+  background-size: 40px 40px; 
+  border-radius: 10px;
+}
+
+.home-content h1 {
+  font-size: 28px;
+  font-weight: normal;
+  line-height: 1.4;
+  color: #7f7f7f; 
+  opacity: 0;
+  animation: slideUp 1s ease-out forwards;
+}
+
+/* Animações suaves */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  0% {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.titulo-menu {
+  font-weight: bold;
+  color: white;
+}
+

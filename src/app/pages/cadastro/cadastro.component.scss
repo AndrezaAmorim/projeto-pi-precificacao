@@ -1,0 +1,194 @@
+$form-gap: 1rem;
+$input-padding: 0.6rem;
+$border-color: #dcdcdc;
+$primary-color: #0052cc;
+$hover-bg: white;
+$hover-text: $primary-color;
+$button-bg: $primary-color;
+$button-text: white;
+
+.form-container {
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  animation: fadeIn 1s ease-out forwards;
+  padding-top: 80px;
+
+  h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #7f7f7f;
+    font-size: 24px;
+    animation: slideUp 0.8s ease-out forwards;
+  }
+
+  form {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.7rem 1.7rem;
+
+    label {
+      font-weight: bold;
+      margin-bottom: 0.3rem;
+      display: block;
+      color: #555;
+    }
+
+    input[type='text'],
+    input[type='number'],
+    input[type='date'],
+    input[type='email'],
+    select {
+      width: 100%;
+      padding: $input-padding;
+      border: 1px solid $border-color;
+      border-radius: 6px;
+      font-size: 0.95rem;
+      transition: border-color 0.3s ease;
+
+      &:focus {
+        border-color: $primary-color;
+        outline: none;
+      }
+    }
+
+    .checkbox-field {
+      display: flex;
+      align-items: center;
+      padding-top: 10%;
+      padding-left: 5%;
+
+      label {
+        display: flex;
+        align-items: center;
+        white-space: nowrap;
+        gap: 0.5rem; 
+        font-weight: bold;
+        color: #555;
+      }
+    
+      input[type='checkbox'] {
+        margin: 0;
+      }
+    }
+    
+    .full-width {
+      grid-column: 1 / -1;
+      text-align: right;
+      margin-top: 2rem;
+      padding-bottom: 4rem;
+    
+      button {
+        width: 140px; 
+        padding: 0.7rem;
+        font-size: 1rem;
+        font-weight: bold;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.3s, color 0.3s;
+        margin-left: 1rem;
+      }
+    
+      .btn-salvar {
+        background-color: #28a745;
+        color: white;
+    
+        &:hover {
+          background-color: darken(#28a745, 7%);
+        }
+      }
+    
+      .btn-cancelar {
+        background-color: #9da3a8; 
+        color: white;
+    
+        &:hover {
+          background-color: darken(#9da3a8, 5%);
+        }
+      }
+    }
+    
+    button {
+      padding: 0.8rem 1.5rem;
+      font-size: 1rem;
+      background-color: $button-bg;
+      color: $button-text;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s, color 0.3s;
+
+      &:hover {
+        background-color: $hover-bg;
+        color: $hover-text;
+        border: 1px solid $primary-color;
+      }
+    }
+  }
+}
+
+input.ng-invalid.ng-touched,
+input.ng-invalid.ng-dirty {
+  border-color: #ff1e1e !important;
+  box-shadow: 0 0 0 1px rgba(255, 30, 30, 0.3);
+}
+
+.invalid {
+  border-color: #ff1e1e;
+  box-shadow: 0 0 0 1px rgba(255, 30, 30, 0.3);
+}
+
+.error-msg {
+  color: #ff1e1e;
+  font-size: 0.75rem;
+  margin-top: 4px;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 0.6rem;
+  border: 1px solid #dcdcdc;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  transition: border-color 0.3s ease;
+
+  &:focus {
+    border-color: #0052cc;
+    outline: none;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  0% {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+input:hover {
+  border-color: #b3b3b3;
+}
+
+input:focus {
+  box-shadow: 0 0 0 2px rgba(0, 82, 204, 0.2);
+}
+
+.titulo-menu {
+  color: white;
+  font-size: 1.2rem;
+}

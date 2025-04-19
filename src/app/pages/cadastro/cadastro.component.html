@@ -1,0 +1,246 @@
+<mat-toolbar color="primary">
+  <span class="titulo-logo">MR</span>
+  <span class="titulo-menu">Cadastro de Produto</span>
+</mat-toolbar>
+<div class="form-container">
+  <form [formGroup]="cadastroForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label>SKU</label>
+      <input 
+        formControlName="sku" 
+        [class.invalid]="isCampoInvalido('sku')"
+      />
+      <small class="error-msg" *ngIf="isCampoInvalido('sku') && cadastroForm.get('sku')?.errors?.['required']">
+        Este campo é obrigatório.
+      </small>
+    </div>
+
+    <div>
+      <label>Nome do Produto</label>
+      <input 
+        formControlName="nomeProduto" 
+        [class.invalid]="isCampoInvalido('nomeProduto')"
+      />
+      <small class="error-msg" *ngIf="isCampoInvalido('nomeProduto') && cadastroForm.get('nomeProduto')?.errors?.['required']">
+        Este campo é obrigatório.
+      </small>
+    </div>
+
+    <div>
+      <label>Fornecedor</label>
+      <input formControlName="fornecedor" />
+    </div>
+
+    <div>
+      <label>Peso (kg)</label>
+      <input 
+        type="number" 
+        formControlName="peso" 
+        min="0" 
+        step="0.01" 
+        [class.invalid]="isCampoInvalido('peso')"
+      />
+      <small class="error-msg" *ngIf="isCampoInvalido('peso') && cadastroForm.get('peso')?.errors?.['min']">
+        O valor não pode ser negativo.
+      </small>
+    </div>
+
+    <div>
+      <label>Altura (cm)</label>
+      <input 
+        type="number" 
+        formControlName="altura" 
+        min="0" 
+        step="0.01" 
+        [class.invalid]="isCampoInvalido('altura')"
+      />
+      <small class="error-msg" *ngIf="isCampoInvalido('altura') && cadastroForm.get('altura')?.errors?.['min']">
+        O valor não pode ser negativo.
+      </small>
+    </div>
+
+    <div>
+      <label>Largura (cm)</label>
+      <input 
+        type="number" 
+        formControlName="largura" 
+        min="0" 
+        step="0.01" 
+        [class.invalid]="isCampoInvalido('largura')"
+      />
+      <small class="error-msg" *ngIf="isCampoInvalido('largura') && cadastroForm.get('largura')?.errors?.['min']">
+        O valor não pode ser negativo.
+      </small>
+    </div>
+
+    <div>
+      <label>Data da Compra</label>
+      <input 
+        type="date" 
+        formControlName="dataCompra" 
+        [class.invalid]="isCampoInvalido('dataCompra')"
+      />
+      <small class="error-msg" *ngIf="isCampoInvalido('dataCompra') && cadastroForm.get('dataCompra')?.errors?.['required']">
+        Este campo é obrigatório.
+      </small>
+    </div>
+
+    <div>
+      <label>Tipo da Compra</label>
+      <input formControlName="tipoCompra" />
+    </div>
+
+    <div>
+      <label>Preço Unitário (R$)</label>
+      <input 
+        type="number" 
+        formControlName="precoUnitario" 
+        min="0" 
+        step="0.01" 
+        [class.invalid]="isCampoInvalido('precoUnitario')"
+      />
+      <small class="error-msg" *ngIf="isCampoInvalido('precoUnitario') && cadastroForm.get('precoUnitario')?.errors?.['required']">
+        Este campo é obrigatório.
+      </small>
+      <small class="error-msg" *ngIf="isCampoInvalido('precoUnitario') && cadastroForm.get('precoUnitario')?.errors?.['min']">
+        O valor não pode ser negativo.
+      </small>
+
+    </div>
+
+    <div>
+      <label>Custos Extras (R$)</label>
+      <input 
+        type="number" 
+        formControlName="custosExtras" 
+        min="0" 
+        step="0.01" 
+        [class.invalid]="isCampoInvalido('custosExtras')"
+      />
+      <small class="error-msg" *ngIf="isCampoInvalido('custosExtras') && cadastroForm.get('custosExtras')?.errors?.['required']">
+        Este campo é obrigatório.
+      </small>
+      <small class="error-msg" *ngIf="isCampoInvalido('custosExtras') && cadastroForm.get('custosExtras')?.errors?.['min']">
+        O valor não pode ser negativo.
+      </small>
+    </div>
+
+    <div>
+      <label>ICMS (%)</label>
+      <input 
+        type="number" 
+        formControlName="icms" 
+        min="0" 
+        step="0.01" 
+        [class.invalid]="isCampoInvalido('icms')"
+      />
+      <small class="error-msg" *ngIf="isCampoInvalido('icms') && cadastroForm.get('icms')?.errors?.['required']">
+        Este campo é obrigatório.
+      </small>
+      <small class="error-msg" *ngIf="isCampoInvalido('icms') && cadastroForm.get('icms')?.errors?.['min']">
+        O valor não pode ser negativo.
+      </small>
+    </div>
+
+    <div>
+      <label>IPI (%)</label>
+      <input 
+        type="number" 
+        formControlName="ipi" 
+        min="0" 
+        step="0.01" 
+        [class.invalid]="isCampoInvalido('ipi')"
+      />
+      <small class="error-msg" *ngIf="isCampoInvalido('ipi') && cadastroForm.get('ipi')?.errors?.['required']">
+        Este campo é obrigatório.
+      </small>
+      <small class="error-msg" *ngIf="isCampoInvalido('ipi') && cadastroForm.get('ipi')?.errors?.['min']">
+        O valor não pode ser negativo.
+      </small>
+    </div>
+
+    <div>
+      <label>PIS/COFINS (%)</label>
+      <input 
+        type="number" 
+        formControlName="pisCofins" 
+        min="0" 
+        step="0.01" 
+        [class.invalid]="isCampoInvalido('pisCofins')"
+      />
+      <small class="error-msg" *ngIf="isCampoInvalido('pisCofins') && cadastroForm.get('pisCofins')?.errors?.['required']">
+        Este campo é obrigatório.
+      </small>
+      <small class="error-msg" *ngIf="isCampoInvalido('pisCofins') && cadastroForm.get('pisCofins')?.errors?.['min']">
+        O valor não pode ser negativo.
+      </small>
+    </div>
+
+    <div>
+      <label>MVA Ajustado (%)</label>
+      <input 
+        type="number" 
+        formControlName="mvaAjustado" 
+        min="0" 
+        step="0.01" 
+        [class.invalid]="isCampoInvalido('mvaAjustado')"
+      />
+      <small class="error-msg" *ngIf="isCampoInvalido('mvaAjustado') && cadastroForm.get('mvaAjustado')?.errors?.['required']">
+        Este campo é obrigatório.
+      </small>
+      <small class="error-msg" *ngIf="isCampoInvalido('mvaAjustado') && cadastroForm.get('mvaAjustado')?.errors?.['min']">
+        O valor não pode ser negativo.
+      </small>
+    </div>
+
+    <div>
+      <label>ICMS Retido (%)</label>
+      <input 
+        type="number"
+        formControlName="icmsRetido" 
+        min="0" 
+        step="0.01" 
+        [class.invalid]="isCampoInvalido('icmsRetido')"
+      />
+      <small class="error-msg" *ngIf="isCampoInvalido('icmsRetido') && cadastroForm.get('icmsRetido')?.errors?.['required']">
+        Este campo é obrigatório.
+      </small>
+      <small class="error-msg" *ngIf="isCampoInvalido('icmsRetido') && cadastroForm.get('icmsRetido')?.errors?.['min']">
+        O valor não pode ser negativo.
+      </small>
+    </div>
+
+    <div>
+      <label>ICMS Próprio (%)</label>
+      <input 
+        type="number" 
+        formControlName="icmsProprio" 
+        min="0" 
+        step="0.01" 
+        [class.invalid]="isCampoInvalido('icmsProprio')"
+      />
+      <small class="error-msg" *ngIf="isCampoInvalido('icmsProprio') && cadastroForm.get('icmsProprio')?.errors?.['required']">
+        Este campo é obrigatório.
+      </small>
+      <small class="error-msg" *ngIf="isCampoInvalido('icmsProprio') && cadastroForm.get('icmsProprio')?.errors?.['min']">
+        O valor não pode ser negativo.
+      </small>
+    </div>
+
+    <div class="checkbox-field">
+      <label>
+        <input type="checkbox" formControlName="kit" />
+        Produto é Kit
+      </label>
+    </div>
+
+    <div class="full-width">
+      <button class="btn-cancelar" type="button" (click)="cancelar()">Cancelar</button>
+      <button class="btn-salvar" type="submit">Salvar</button>
+    </div>
+  </form>
+</div>
+<footer class="footer">
+  <p>© {{currentYear}} Magazine Rufino.</p>
+</footer>
+<app-loading *ngIf="loading"></app-loading>

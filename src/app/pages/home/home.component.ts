@@ -1,15 +1,13 @@
 import { Component } from '@angular/core';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatButtonModule } from '@angular/material/button';
-import { RouterModule } from '@angular/router';
+import { SHARED_IMPORTS } from '../../shared/shared-module';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [MatToolbarModule, MatButtonModule, RouterModule],
+  imports: [...SHARED_IMPORTS],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
 export class HomeComponent {
-
+  currentYear = new Date().getFullYear();
 }

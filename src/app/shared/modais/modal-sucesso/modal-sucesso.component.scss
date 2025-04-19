@@ -1,0 +1,66 @@
+$primary-color: #0052cc;
+$hover-bg: white;
+$hover-text: $primary-color;
+$button-bg: $primary-color;
+$button-text: white;
+$light-gray: #f0f0f0;
+$text-color: #444;
+
+:host {
+  display: block;
+  padding: 1.5rem;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  animation: fadeIn 0.4s ease-out forwards;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+h2 {
+  margin-top: 0;
+  font-size: 1.5rem;
+  color: $primary-color;
+  text-align: center;
+}
+
+mat-dialog-content {
+  font-size: 1rem;
+  color: $text-color;
+  text-align: center;
+  margin: 1.2rem 0;
+}
+
+modal-actions {
+  display: flex;
+  justify-content: space-evenly !important;
+  gap: 20px;  
+  margin-top: 20px;  
+}
+
+.mat-mdc-dialog-actions {
+  justify-content: space-evenly !important;
+  top: 18px;
+}
+
+modal-actions button {
+  flex: 1;  
+  min-width: 120px;  
+  height: 40px;  
+  border-radius: 5px; 
+  font-size: 16px;  
+  transition: all 0.3s ease;  
+  border: 2px solid transparent;
+}
+
+modal-actions button:hover {
+  background-color: #0052cc;  
+  color: white;  
+}
+
+.modal-actions button:focus {
+  outline: none;  
+  border: 2px solid #0052cc;  
+  box-shadow: 0 0 10px rgba(0, 82, 204, 0.6);   
+}
+

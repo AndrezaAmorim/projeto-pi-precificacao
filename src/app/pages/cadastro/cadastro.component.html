@@ -8,6 +8,7 @@
       <label>SKU</label>
       <input 
         formControlName="sku" 
+        placeholder="Inclua o código do produto e aguarde"
         [class.invalid]="isCampoInvalido('sku')"
       />
       <small class="error-msg" *ngIf="isCampoInvalido('sku') && cadastroForm.get('sku')?.errors?.['required']">
@@ -236,7 +237,7 @@
 
     <div class="full-width">
       <button class="btn-cancelar" type="button" (click)="cancelar()">Cancelar</button>
-      <button class="btn-salvar" type="submit">Salvar</button>
+      <button class="btn-salvar" type="submit" [disabled]="!botoesHabilitados">Salvar</button>
     </div>
   </form>
 </div>

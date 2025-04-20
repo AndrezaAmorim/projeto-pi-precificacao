@@ -3,10 +3,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalSucessoComponent } from '../../shared/modais/modal-sucesso/modal-sucesso.component';
-import { ModalfalhaComponent } from '../../shared/modais/modal-falha/modal-falha.component';
 import { SHARED_COMPONENTS, SHARED_IMPORTS } from '../../shared/shared-module';
-import { Subscription } from 'rxjs';
+import { debounceTime, distinctUntilChanged, filter, Subscription } from 'rxjs';
 import { CadastroService } from './cadastro.service';
+import { ModalFalhaComponent } from '../../shared/modais/modal-falha/modal-falha.component';
 
 @Component({
   standalone: true,
@@ -17,9 +17,10 @@ import { CadastroService } from './cadastro.service';
 })
 export class CadastroComponent implements OnInit, OnDestroy{
   private subscription = new Subscription();
-  cadastroForm!: FormGroup;
-  loading: boolean = false;
-  currentYear = new Date().getFullYear();
+  public cadastroForm!: FormGroup;
+  public loading: boolean = false;
+  public currentYear = new Date().getFullYear();
+  public botoesHabilitados: boolean = false;
 
   constructor(
     private fb: FormBuilder, 
@@ -30,34 +31,95 @@ export class CadastroComponent implements OnInit, OnDestroy{
 
   ngOnInit(): void {
     this.iniciarFormulario();
+    this.cadastroForm.get('sku')?.valueChanges.pipe(
+      debounceTime(1000), 
+      distinctUntilChanged(), 
+      filter(value => !!value && value.length >= 3) 
+    ).subscribe(sku => {
+      this.buscarProdutoPorSku(sku);
+    });
   }
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
 
-  iniciarFormulario() {
-    this.cadastroForm = this.fb.group({
-      sku: ['', Validators.required],
-      nomeProduto: ['', Validators.required],
-      fornecedor: [''],
-      peso: [null, Validators.min(0)],
-      altura: [null, Validators.min(0)],
-      largura: [null, Validators.min(0)],
-      kit: [false, Validators.required],
-      dataCompra: ['', Validators.required],
-      tipoCompra: [''],
-      precoUnitario: [null, [Validators.required, Validators.min(0)]],
-      custosExtras: [null, [Validators.required, Validators.min(0)]],
-      icms: [null, [Validators.required, Validators.min(0)]],
-      ipi: [null, [Validators.required, Validators.min(0)]],
-      pisCofins: [null, [Validators.required, Validators.min(0)]],
-      mvaAjustado: [null, [Validators.required, Validators.min(0)]],
-      icmsRetido: [null, [Validators.required, Validators.min(0)]],
-      icmsProprio: [null, [Validators.required, Validators.min(0)]],
+  buscarProdutoPorSku(sku: string): void {
+    this.loading = true;
+    this.cadastroService.buscarProdutoPorSku(sku).subscribe({
+      next: (produto) => {
+        this.loading = false;
+        if (produto) {
+          this.preencherFormulario(produto);
+          Object.keys(this.cadastroForm.controls).forEach(controlName => {
+            if (controlName !== 'sku') {
+              this.cadastroForm.get(controlName)?.enable();
+            }
+          });
+          this.cadastroForm.get('sku')?.disable();
+          this.botoesHabilitados = true;
+        } else {
+          Object.keys(this.cadastroForm.controls).forEach(controlName => {
+            this.cadastroForm.get(controlName)?.enable();
+          });
+          this.botoesHabilitados = true;
+        }
+      },
+      error: () => {
+        this.loading = false;
+        this.abrirModalFalha();
+      }
     });
   }
-  
+
+  preencherFormulario(produto: any): void {
+    this.cadastroForm.patchValue({
+      idProduto: produto.IdProduto,
+      idCustoProduto: produto.IdCustoProduto,
+      sku: produto.SKU,
+      nomeProduto: produto.NomeProduto,
+      fornecedor: produto.Fornecedor,
+      peso: produto.Peso,
+      altura: produto.Altura,
+      largura: produto.Largura,
+      kit: produto.KIT,
+      dataCompra: produto.DataCompra?.split('T')[0],
+      tipoCompra: produto.TipoCompra,
+      precoUnitario: produto.PrecoUnitario,
+      custosExtras: produto.CustosExtras,
+      icms: produto.ICMS,
+      ipi: produto.IPI,
+      pisCofins: produto.PISCOFINS,
+      mvaAjustado: produto.MVAAjustado,
+      icmsRetido: produto.ICMSRetido,
+      icmsProprio: produto.ICMSProprio,
+    });
+  }
+
+  iniciarFormulario() {
+    this.cadastroForm = this.fb.group({
+      idProduto: [{ value: null, disabled: true }],
+      idCustoProduto: [{ value: null, disabled: true }],
+      sku: ['', Validators.required],
+      nomeProduto: [{ value: '', disabled: true }, Validators.required],
+      fornecedor: [{ value: '', disabled: true }],
+      peso: [{ value: null, disabled: true }, Validators.min(0)],
+      altura: [{ value: null, disabled: true }, Validators.min(0)],
+      largura: [{ value: null, disabled: true }, Validators.min(0)],
+      kit: [{ value: false, disabled: true }],
+      dataCompra: [{ value: '', disabled: true }, Validators.required],
+      tipoCompra: [{ value: '', disabled: true }],
+      precoUnitario: [{ value: null, disabled: true }, [Validators.required, Validators.min(0)]],
+      custosExtras: [{ value: null, disabled: true }, [Validators.required, Validators.min(0)]],
+      icms: [{ value: null, disabled: true }, [Validators.required, Validators.min(0)]],
+      ipi: [{ value: null, disabled: true }, [Validators.required, Validators.min(0)]],
+      pisCofins: [{ value: null, disabled: true }, [Validators.required, Validators.min(0)]],
+      mvaAjustado: [{ value: null, disabled: true }, [Validators.required, Validators.min(0)]],
+      icmsRetido: [{ value: null, disabled: true }, [Validators.required, Validators.min(0)]],
+      icmsProprio: [{ value: null, disabled: true }, [Validators.required, Validators.min(0)]],
+    });
+  }
+    
   onSubmit() {
     if (this.cadastroForm.valid) {
       this.loading = true;
@@ -82,19 +144,20 @@ export class CadastroComponent implements OnInit, OnDestroy{
     }
   }
   
-  abrirModalSucesso() {
+  abrirModalSucesso(): void {
     const dialogRef = this.dialog.open(ModalSucessoComponent, {autoFocus: false});
     dialogRef.afterClosed().subscribe(result => {
       if (result === 'home') {
         this.router.navigate(['/'])
       } else if (result === 'novo') {
         this.cadastroForm.reset();
+        this.botoesHabilitados = false;
       }
     });
   }
 
-  abrirModalFalha() {
-   this.dialog.open(ModalfalhaComponent, {autoFocus: false});
+  abrirModalFalha(): void {
+   this.dialog.open(ModalFalhaComponent, {autoFocus: false});
   }
 
   isCampoInvalido(campo: string): boolean {

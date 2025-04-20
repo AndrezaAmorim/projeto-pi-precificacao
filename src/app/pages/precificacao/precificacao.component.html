@@ -1,0 +1,115 @@
+<mat-toolbar color="primary">
+  <span class="titulo-logo">MR</span>
+  <span class="titulo-menu">Precificação de Produto</span>
+</mat-toolbar>
+<div class="form-container">
+  <form [formGroup]="precificacaoForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label>SKU</label>
+      <input 
+        formControlName="sku" 
+        placeholder="Inclua o código do produto e aguarde"
+        [class.invalid]="isCampoInvalido('sku')"
+      />
+      <small class="error-msg" *ngIf="isCampoInvalido('sku') && precificacaoForm.get('sku')?.errors?.['required']">
+        Este campo é obrigatório.
+      </small>
+    </div>
+
+    <div>
+      <label>Nome do Produto</label>
+      <input formControlName="nomeProduto"/>
+    </div>
+
+    <div>
+      <label>Preço Sugerido (R$)</label>
+      <input 
+        type="number" 
+        formControlName="precoSugeridoSTSP" 
+        step="0.01" 
+      />
+    </div>
+
+    <div>
+      <label>Preço Venda (R$)</label>
+      <input 
+        type="number" 
+        formControlName="precoVenda" 
+        step="0.01" 
+        min="0" 
+        [class.invalid]="isCampoInvalido('precoVenda')"
+      />
+      <small class="error-msg" *ngIf="isCampoInvalido('precoVenda') && precificacaoForm.get('precoVenda')?.errors?.['min']">
+        O valor não pode ser negativo.
+      </small>
+    </div>
+
+    <div>
+      <label>Desconto (%)</label>
+      <input 
+        type="number" 
+        formControlName="desconto" 
+        step="0.01" 
+        min="0" 
+        [class.invalid]="isCampoInvalido('desconto')"
+      />
+      <small class="error-msg" *ngIf="isCampoInvalido('desconto') && precificacaoForm.get('desconto')?.errors?.['min']">
+        O valor não pode ser negativo.
+      </small>
+    </div>
+
+    <div>
+      <label>Preço com Desconto (R$)</label>
+      <input 
+        type="number" 
+        formControlName="precoDesconto" 
+        step="0.01" 
+      />
+    </div>
+
+    <div>
+      <label>Margem Liquida (%)</label>
+      <input 
+        type="number" 
+        formControlName="magemLiquida" 
+        step="0.01" 
+      />
+    </div>
+
+    <div>
+      <label>Margem Bruta (%)</label>
+      <input 
+        type="number" 
+        formControlName="margemBruta" 
+        step="0.01" 
+      />
+    </div>
+
+    <div>
+      <label>Valor Lucro (R$)</label>
+      <input 
+        type="number" 
+        formControlName="lucro" 
+        step="0.01" 
+      />
+    </div>
+
+    <div>
+      <label>Data Alteração do Preço</label>
+      <input 
+        type="date" 
+        formControlName="dataAlteracaoPreco" 
+      />
+    </div>
+
+    <div class="full-width">
+      <button class="btn-cancelar" type="button" (click)="cancelar()">Cancelar</button>
+      <button class="btn-salvar" type="button" (click)="calcularPreco()" [disabled]="!botoesHabilitados">Calcular Preço</button>
+      <button class="btn-salvar" type="submit" [disabled]="!botoesHabilitados">Salvar</button>
+    </div>
+  </form>
+</div>
+<footer class="footer">
+  <p>© {{currentYear}} Magazine Rufino.</p>
+</footer>
+<app-loading *ngIf="loading"></app-loading>

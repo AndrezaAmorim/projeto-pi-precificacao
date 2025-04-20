@@ -5,9 +5,9 @@ import { animate, style, transition, trigger } from '@angular/animations';
 
 @Component({
   standalone: true,
-  selector: 'app-modal-falha',
-  templateUrl: './modal-falha.component.html',
-  styleUrls: ['./modal-falha.component.scss'],
+  selector: 'app-modal-nao-encontrado',
+  templateUrl: './modal-nao-encontrado.component.html',
+  styleUrls: ['./modal-nao-encontrado.component.scss'],
   imports: [...SHARED_IMPORTS],
   animations: [
     trigger('fadeIn', [
@@ -18,8 +18,8 @@ import { animate, style, transition, trigger } from '@angular/animations';
     ])
   ]
 })
-export class ModalFalhaComponent {
-  constructor(private dialogRef: MatDialogRef<ModalFalhaComponent>) {}
+export class ModalNaoEncontradoComponent {
+  constructor(private dialogRef: MatDialogRef<ModalNaoEncontradoComponent>) {}
 
   fecharModal(): void {
     this.dialogRef.close('fechar');

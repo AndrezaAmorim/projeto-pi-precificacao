@@ -53,5 +53,26 @@ mat-toolbar button:hover {
   flex: 1 1 auto;
 }
 
+input::placeholder {
+  color: #a0a0a0; 
+  font-style: italic;
+  opacity: 1; 
+}
+
+button:disabled,
+button[disabled] {
+  background-color: #e0e0e0 !important;
+  color: #999 !important;
+  cursor: not-allowed;
+  opacity: 0.8;
+}
+
+input:disabled {
+  color: #777;
+  background-color: #f8f8f8;
+  pointer-events: none;
+  box-shadow: none;
+}
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

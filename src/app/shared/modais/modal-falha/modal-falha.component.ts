@@ -18,8 +18,8 @@ import { animate, style, transition, trigger } from '@angular/animations';
     ])
   ]
 })
-export class ModalfalhaComponent {
-  constructor(private dialogRef: MatDialogRef<ModalfalhaComponent>) {}
+export class ModalFalhaComponent {
+  constructor(private dialogRef: MatDialogRef<ModalFalhaComponent>) {}
 
   fecharModal(): void {
     this.dialogRef.close('fechar');

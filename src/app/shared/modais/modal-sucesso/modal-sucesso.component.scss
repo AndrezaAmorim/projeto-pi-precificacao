@@ -8,12 +8,14 @@ $text-color: #444;
 
 :host {
   display: block;
-  padding: 1.5rem;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: hidden;
   background-color: white;
   border-radius: 10px;
+  padding: 1.5rem;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
   animation: fadeIn 0.4s ease-out forwards;
-  max-width: 500px;
   margin: 0 auto;
 }
 

@@ -6,14 +6,14 @@ import { catchError, Observable, of } from "rxjs";
   providedIn: 'root'  
 })
 export class PrecificacaoService {
-  private readonly apiUrl = 'https://projetopiprecificacao.onrender.com/api/precificacao';
+  private readonly apiUrl = 'https://projeto-pi-precificacao-api.onrender.com/api/Precificacao';
 
   constructor(
     private http: HttpClient
   ) { }
 
   salvar(form: any): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/salvar`, form).pipe(  
+    return this.http.post<any>(`${this.apiUrl}/Salvar`, form).pipe(  
       catchError(error => {
         return of(null);  
       })
@@ -21,7 +21,7 @@ export class PrecificacaoService {
   }
 
   calcularPreco(form: any): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/calcularPreco`, form).pipe(  
+    return this.http.post<any>(`${this.apiUrl}/CalcularPreco`, form).pipe(  
       catchError(error => {
         return of(null);  
       })

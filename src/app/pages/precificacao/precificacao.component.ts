@@ -164,19 +164,19 @@ export class PrecificacaoComponent implements OnInit, OnDestroy {
 
   preencherFormulario(produto: any): void {
     this.precificacaoForm.patchValue({
-      idProduto: produto.IdProduto,
-      idPrecoProduto: produto.IdPrecoProduto,
-      sku: produto.SKU,
-      nomeProduto: produto.NomeProduto,
-      precoSugeridoSTSP: produto.PrecoSugerido,
-      precoVenda: produto.PrecoVenda,
-      desconto: produto.Desconto,
-      precoDesconto: produto.PrecoDesconto,
-      magemLiquida: produto.MargemLiquida,
-      margemBruta: produto.MargemBruta,
-      lucro: produto.Lucro,
-      dataAlteracaoPreco: produto.DataAlteracaoPreco.split('T')[0]
-    });
+      idProduto: produto.idProduto,
+      idPrecoProduto: produto.idPrecoProduto,
+      sku: produto.sku,
+      nomeProduto: produto.nomeProduto,
+      precoSugeridoSTSP: produto.precoSugeridoSTSP,
+      precoVenda: produto.precoVenda,
+      desconto: produto.desconto,
+      precoDesconto: produto.precoDesconto,
+      magemLiquida: produto.margemLiquida,
+      margemBruta: produto.margemBruta,
+      lucro: produto.lucro,
+      dataAlteracaoPreco: produto.dataAlteracaoPreco.split('T')[0]
+    }, { emitEvent: false });
   }
 
   cancelar(): void {

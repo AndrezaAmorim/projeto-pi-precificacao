@@ -74,25 +74,25 @@ export class CadastroComponent implements OnInit, OnDestroy{
 
   preencherFormulario(produto: any): void {
     this.cadastroForm.patchValue({
-      idProduto: produto.IdProduto,
-      idCustoProduto: produto.IdCustoProduto,
-      sku: produto.SKU,
-      nomeProduto: produto.NomeProduto,
-      fornecedor: produto.Fornecedor,
-      peso: produto.Peso,
-      altura: produto.Altura,
-      largura: produto.Largura,
-      kit: produto.KIT,
-      dataCompra: produto.DataCompra?.split('T')[0],
-      tipoCompra: produto.TipoCompra,
-      precoUnitario: produto.PrecoUnitario,
-      custosExtras: produto.CustosExtras,
-      icms: produto.ICMS,
-      ipi: produto.IPI,
-      pisCofins: produto.PISCOFINS,
-      mvaAjustado: produto.MVAAjustado,
-      icmsRetido: produto.ICMSRetido,
-      icmsProprio: produto.ICMSProprio,
+      idProduto: produto.idProduto,
+      idCustoProduto: produto.idCustoProduto,
+      sku: produto.sku,
+      nomeProduto: produto.nomeProduto,
+      fornecedor: produto.fornecedor,
+      peso: produto.peso,
+      altura: produto.altura,
+      largura: produto.largura,
+      kit: produto.kit,
+      dataCompra: produto.dataCompra?.split('T')[0],
+      tipoCompra: produto.tipoCompra,
+      precoUnitario: produto.precoUnitario,
+      custosExtras: produto.custosExtras,
+      icms: produto.icms,
+      ipi: produto.ipi,
+      pisCofins: produto.pisCofins,
+      mvaAjustado: produto.mvaAjustado,
+      icmsRetido: produto.icmsRetido,
+      icmsProprio: produto.icmsProprio,
     });
   }
 
@@ -150,7 +150,7 @@ export class CadastroComponent implements OnInit, OnDestroy{
       if (result === 'home') {
         this.router.navigate(['/'])
       } else if (result === 'novo') {
-        this.cadastroForm.reset();
+        this.iniciarFormulario();
         this.botoesHabilitados = false;
       }
     });

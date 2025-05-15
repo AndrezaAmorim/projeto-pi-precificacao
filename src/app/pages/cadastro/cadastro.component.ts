@@ -150,8 +150,7 @@ export class CadastroComponent implements OnInit, OnDestroy{
       if (result === 'home') {
         this.router.navigate(['/'])
       } else if (result === 'novo') {
-        this.iniciarFormulario();
-        this.botoesHabilitados = false;
+        window.location.reload();
       }
     });
   }

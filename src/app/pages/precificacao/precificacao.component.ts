@@ -23,6 +23,8 @@ export class PrecificacaoComponent implements OnInit, OnDestroy {
   public loading = false;
   public currentYear = new Date().getFullYear();
   public botoesHabilitados: boolean = false;
+  public precoVenda:any = 0;
+  public dataFormatada: any;
 
   constructor(
     private fb: FormBuilder,
@@ -33,6 +35,8 @@ export class PrecificacaoComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    const hoje = new Date();
+    this.dataFormatada = hoje.toISOString().substring(0, 10);
     this.iniciarFormulario();
     this.precificacaoForm.get('sku')?.valueChanges.pipe(
       debounceTime(1000), 
@@ -106,6 +110,8 @@ export class PrecificacaoComponent implements OnInit, OnDestroy {
       margemBruta: [{ value: null, disabled: true }],
       lucro: [{ value: null, disabled: true }],
       dataAlteracaoPreco: [{ value: '', disabled: true }],
+      fornecedor:[''],
+      tipoCompra: ['']
     });
   }
 
@@ -139,6 +145,7 @@ export class PrecificacaoComponent implements OnInit, OnDestroy {
   }
 
   calcularPreco() {
+    this.precoVenda = this.precificacaoForm.get('precoVenda')?.value;
     if (this.precificacaoForm.valid) {
       this.loading = true;
       const form = this.precificacaoForm.getRawValue();
@@ -165,21 +172,43 @@ export class PrecificacaoComponent implements OnInit, OnDestroy {
   preencherFormulario(produto: any): void {
     this.precificacaoForm.patchValue({
       idProduto: produto.idProduto,
-      idPrecoProduto: produto.idPrecoProduto,
+      idPrecoProduto: produto.idPrecoProduto == null ? 0 : produto.idPrecoProduto,
       sku: produto.sku,
       nomeProduto: produto.nomeProduto,
-      precoSugeridoSTSP: produto.precoSugeridoSTSP,
-      precoVenda: produto.precoVenda,
-      desconto: produto.desconto,
-      precoDesconto: produto.precoDesconto,
-      magemLiquida: produto.margemLiquida,
-      margemBruta: produto.margemBruta,
-      lucro: produto.lucro,
-      dataAlteracaoPreco: produto.dataAlteracaoPreco.split('T')[0]
+      precoSugeridoSTSP: produto.precoSugeridoSTSP == null ? 0 : produto.precoSugeridoSTSP,
+      precoVenda: produto.precoVenda == null ? this.precoVenda : produto.precoVenda,
+      desconto: produto.desconto == null ? 0 : produto.desconto,
+      precoDesconto: produto.precoDesconto == null ? 0 : produto.precoDesconto,
+      magemLiquida: produto.margemLiquida == null ? 0 : produto.margemLiquida,
+      margemBruta: produto.margemBruta == null ? 0 : produto.margemBruta,
+      lucro: produto.lucro == null ? 0 : produto.lucro,
+      tipoCompra: produto.tipoCompra,
+      fornecedor: produto.fornecedor,
+      dataAlteracaoPreco: produto.dataAlteracaoPreco == null ? this.dataFormatada : produto.dataAlteracaoPreco.split('T')[0]
     }, { emitEvent: false });
+
+    this.formatarCasasDecimaisEmLote();
   }
 
   cancelar(): void {
     this.router.navigate(['/']);
+  }
+
+  formatarCasasDecimaisEmLote() {
+    this.formatarDuasCasasDecimais('precoSugeridoSTSP');
+    this.formatarDuasCasasDecimais('precoVenda');
+    this.formatarDuasCasasDecimais('desconto');
+    this.formatarDuasCasasDecimais('precoDesconto');
+    this.formatarDuasCasasDecimais('magemLiquida');
+    this.formatarDuasCasasDecimais('margemBruta');
+    this.formatarDuasCasasDecimais('lucro');
+  }
+
+  formatarDuasCasasDecimais(campo: string) {
+    const valor = this.precificacaoForm.get(campo)?.value;
+    if (valor != null) {
+      const valorFormatado = parseFloat(valor).toFixed(2);
+      this.precificacaoForm.get(campo)?.setValue(parseFloat(valorFormatado));
+    }
   }
 }

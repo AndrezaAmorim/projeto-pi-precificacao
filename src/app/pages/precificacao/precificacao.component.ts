@@ -179,7 +179,7 @@ export class PrecificacaoComponent implements OnInit, OnDestroy {
       precoVenda: produto.precoVenda == null ? this.precoVenda : produto.precoVenda,
       desconto: produto.desconto == null ? 0 : produto.desconto,
       precoDesconto: produto.precoDesconto == null ? 0 : produto.precoDesconto,
-      magemLiquida: produto.margemLiquida == null ? 0 : produto.margemLiquida,
+      margemLiquida: produto.margemLiquida == null ? 0 : produto.margemLiquida,
       margemBruta: produto.margemBruta == null ? 0 : produto.margemBruta,
       lucro: produto.lucro == null ? 0 : produto.lucro,
       tipoCompra: produto.tipoCompra,

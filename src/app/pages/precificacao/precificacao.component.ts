@@ -36,7 +36,7 @@ export class PrecificacaoComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     const hoje = new Date();
-    this.dataFormatada = hoje.toISOString().substring(0, 10);
+    this.dataFormatada = hoje.toLocaleDateString('pt-BR').split('/').reverse().join('-');
     this.iniciarFormulario();
     this.precificacaoForm.get('sku')?.valueChanges.pipe(
       debounceTime(1000), 

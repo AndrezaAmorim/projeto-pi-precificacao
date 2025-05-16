@@ -90,8 +90,7 @@ export class PrecificacaoComponent implements OnInit, OnDestroy {
       if (result === 'home') {
         this.router.navigate(['/'])
       } else if (result === 'novo') {
-        this.precificacaoForm.reset();
-        this.botoesHabilitados = false;
+        window.location.reload();
       }
     });
   }

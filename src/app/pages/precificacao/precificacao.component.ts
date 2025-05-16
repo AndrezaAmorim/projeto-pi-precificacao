@@ -175,7 +175,7 @@ export class PrecificacaoComponent implements OnInit, OnDestroy {
       sku: produto.sku,
       nomeProduto: produto.nomeProduto,
       precoSugeridoSTSP: produto.precoSugeridoSTSP == null ? 0 : produto.precoSugeridoSTSP,
-      precoVenda: produto.precoVenda == null ? this.precoVenda : produto.precoVenda,
+      precoVenda: produto.precoVenda == null || produto.precoVenda == 0 ? this.precoVenda : produto.precoVenda,
       desconto: produto.desconto == null ? 0 : produto.desconto,
       precoDesconto: produto.precoDesconto == null ? 0 : produto.precoDesconto,
       margemLiquida: produto.margemLiquida == null ? 0 : produto.margemLiquida,

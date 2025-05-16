@@ -106,7 +106,7 @@ export class PrecificacaoComponent implements OnInit, OnDestroy {
       precoVenda: [{ value: null, disabled: true }, [Validators.min(0)]],
       desconto: [{ value: null, disabled: true }, [Validators.min(0)]],
       precoDesconto: [{ value: null, disabled: true }],
-      magemLiquida: [{ value: null, disabled: true }],
+      margemLiquida: [{ value: null, disabled: true }],
       margemBruta: [{ value: null, disabled: true }],
       lucro: [{ value: null, disabled: true }],
       dataAlteracaoPreco: [{ value: '', disabled: true }],
@@ -199,7 +199,7 @@ export class PrecificacaoComponent implements OnInit, OnDestroy {
     this.formatarDuasCasasDecimais('precoVenda');
     this.formatarDuasCasasDecimais('desconto');
     this.formatarDuasCasasDecimais('precoDesconto');
-    this.formatarDuasCasasDecimais('magemLiquida');
+    this.formatarDuasCasasDecimais('margemLiquida');
     this.formatarDuasCasasDecimais('margemBruta');
     this.formatarDuasCasasDecimais('lucro');
   }

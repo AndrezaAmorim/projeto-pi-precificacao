@@ -7,6 +7,7 @@ import { SHARED_COMPONENTS, SHARED_IMPORTS } from '../../shared/shared-module';
 import { debounceTime, distinctUntilChanged, filter, Subscription } from 'rxjs';
 import { CadastroService } from './cadastro.service';
 import { ModalFalhaComponent } from '../../shared/modais/modal-falha/modal-falha.component';
+import { ModalExcelComponent } from '../../shared/modais/modal-excel/modal-excel.component';
 
 @Component({
   standalone: true,
@@ -166,5 +167,13 @@ export class CadastroComponent implements OnInit, OnDestroy{
   
   cancelar() {
     this.router.navigate(['/']);
+  }
+
+  abrirModalExcel() {
+    this.dialog.open(ModalExcelComponent, {
+      width: '500px',           
+      maxWidth: '90vw',          
+      disableClose: false
+    });
   }
 }

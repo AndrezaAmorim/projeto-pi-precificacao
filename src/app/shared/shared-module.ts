@@ -10,6 +10,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { LoadingComponent } from './loading/loading.component';
 import { RouterModule } from '@angular/router';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { ModalExcelComponent } from './modais/modal-excel/modal-excel.component';
 
 export const SHARED_IMPORTS = [
   CommonModule,
@@ -23,9 +24,11 @@ export const SHARED_IMPORTS = [
   MatIconModule,
   MatCheckboxModule,
   RouterModule,
-  MatProgressSpinnerModule 
+  MatProgressSpinnerModule,
+  MatButtonModule
 ];
 
 export const SHARED_COMPONENTS = [
-  LoadingComponent
+  LoadingComponent,
+  ModalExcelComponent
 ];

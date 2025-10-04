@@ -28,4 +28,10 @@ export class CadastroService {
       })
     );
   }
+
+  cadastrarProdutoExcel(arquivo: File): Observable<any> {
+    const formData = new FormData();
+    formData.append('arquivo', arquivo); 
+    return this.http.post(`${this.apiUrl}/CadastrarProdutoExcel`, formData);
+  }
 }

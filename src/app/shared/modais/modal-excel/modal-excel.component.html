@@ -1,0 +1,38 @@
+<h2 mat-dialog-title>Importar Arquivo Excel</h2>
+
+<mat-dialog-content class="form-container">
+  <div class="file-actions">
+    <button mat-stroked-button color="primary" (click)="baixarModelo()">
+      Baixar Modelo
+    </button>
+
+    <input
+      type="file"
+      accept=".xlsx, .xls"
+      id="uploadExcel"
+      hidden
+      (change)="onFileSelected($event)"
+    />
+    <button mat-flat-button color="accent" (click)="abrirFileInput()">
+      Upload Excel
+    </button>
+  </div>
+
+  <div class="status" *ngIf="nomeArquivo">
+    <p><strong>Arquivo:</strong> {{ nomeArquivo }}</p>
+    <p class="upload-ok">✅ Upload concluído!</p>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancelar</button>
+  <button
+    mat-flat-button
+    color="primary"
+    (click)="enviarArquivo()"
+    [disabled]="!arquivoSelecionado"
+  >
+    Enviar Arquivo
+  </button>
+</mat-dialog-actions>
+<app-loading *ngIf="loading"></app-loading>

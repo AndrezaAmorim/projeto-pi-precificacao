@@ -1,0 +1,51 @@
+.form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  min-width: 350px;
+  max-width: 100%;
+}
+
+.file-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+
+  button {
+    min-width: 150px;
+  }
+}
+
+.status {
+  text-align: center;
+  font-size: 0.95rem;
+  color: #444;
+
+  .upload-ok {
+    color: #28a745;
+    font-weight: bold;
+    margin-top: 0.3rem;
+  }
+}
+
+h2[mat-dialog-title] {
+  text-align: center;
+  font-size: 1.4rem;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+mat-dialog-actions {
+  padding: 1rem 1.5rem;
+  border-top: 1px solid #eee;
+  justify-content: flex-end;
+
+  button {
+    min-width: 120px;
+    font-weight: 600;
+  }
+}

@@ -7,6 +7,11 @@ $hover-text: $primary-color;
 $button-bg: $primary-color;
 $button-text: white;
 
+$green-primary: #28a745; 
+$green-hover: #1e7e34; 
+$gray-button: #9da3a8;
+$gray-hover: #83888d; 
+
 .form-container {
   max-width: 1000px;
   margin: 2rem auto;
@@ -51,7 +56,8 @@ $button-text: white;
 
       &:focus {
         border-color: $primary-color;
-        outline: none;
+        outline: 2px solid rgba(0, 82, 204, 0.5);
+        outline-offset: 2px;
       }
     }
 
@@ -65,24 +71,30 @@ $button-text: white;
         display: flex;
         align-items: center;
         white-space: nowrap;
-        gap: 0.5rem; 
+        gap: 0.5rem;
         font-weight: bold;
         color: #555;
       }
-    
+
       input[type='checkbox'] {
         margin: 0;
+        cursor: pointer;
+
+        &:focus {
+          outline: 2px solid rgba(0, 82, 204, 0.5);
+          outline-offset: 2px;
+        }
       }
     }
-    
+
     .full-width {
       grid-column: 1 / -1;
       text-align: right;
       margin-top: 2rem;
       padding-bottom: 4rem;
-    
+
       button {
-        width: 140px; 
+        width: 140px;
         padding: 0.7rem;
         font-size: 1rem;
         font-weight: bold;
@@ -91,27 +103,32 @@ $button-text: white;
         cursor: pointer;
         transition: background-color 0.3s, color 0.3s;
         margin-left: 1rem;
-      }
-    
-      .btn-salvar {
-        background-color: #28a745;
-        color: white;
-    
-        &:hover {
-          background-color: darken(#28a745, 7%);
+
+        &:focus {
+          outline: 3px solid rgba(0, 82, 204, 0.6);
+          outline-offset: 2px;
         }
       }
+
+      .btn-salvar {
+        background-color: #218838; 
+        color: white;
+
+        &:hover {
+          background-color: #1e7e34; 
+        }
+      }     
     
       .btn-cancelar {
-        background-color: #9da3a8; 
-        color: white;
-    
+        background-color: #9da3a8;
+        color: #2c2c2c; 
+
         &:hover {
           background-color: darken(#9da3a8, 5%);
         }
       }
     }
-    
+
     button {
       padding: 0.8rem 1.5rem;
       font-size: 1rem;
@@ -127,8 +144,26 @@ $button-text: white;
         color: $hover-text;
         border: 1px solid $primary-color;
       }
+
+      &:focus {
+        outline: 3px solid rgba(0, 82, 204, 0.6);
+        outline-offset: 2px;
+      }
+
+      &:disabled {
+        background-color: #cccccc;
+        color: #666666;
+        cursor: not-allowed;
+      }
     }
   }
+}
+
+.footer {
+  background-color: #c62828;
+  color: #ffffff;
+  text-align: center;
+  padding: 20px;
 }
 
 input.ng-invalid.ng-touched,
@@ -159,8 +194,9 @@ textarea {
   transition: border-color 0.3s ease;
 
   &:focus {
-    border-color: #0052cc;
-    outline: none;
+    border-color: $primary-color;
+    outline: 2px solid rgba(0, 82, 204, 0.4);
+    outline-offset: 2px;
   }
 }
 

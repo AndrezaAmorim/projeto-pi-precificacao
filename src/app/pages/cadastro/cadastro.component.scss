@@ -6,6 +6,9 @@ $hover-bg: white;
 $hover-text: $primary-color;
 $button-bg: $primary-color;
 $button-text: white;
+$label-color: #2c2c2c;
+$form-heading-color: #333333;
+$error-color: #b00020;
 
 .form-container {
   max-width: 1000px;
@@ -20,7 +23,6 @@ $button-text: white;
   h2 {
     text-align: center;
     margin-bottom: 2rem;
-    color: #7f7f7f;
     font-size: 24px;
     animation: slideUp 0.8s ease-out forwards;
   }
@@ -34,7 +36,11 @@ $button-text: white;
       font-weight: bold;
       margin-bottom: 0.3rem;
       display: block;
-      color: #555;
+      color: $label-color;
+    }
+
+    h2 {
+      color: $form-heading-color;
     }
 
     input[type='text'],
@@ -72,6 +78,7 @@ $button-text: white;
     
       input[type='checkbox'] {
         margin: 0;
+        cursor: pointer;
       }
     }
     
@@ -94,18 +101,18 @@ $button-text: white;
       }
     
       .btn-salvar {
-        background-color: #28a745;
+        background-color: #218838; 
         color: white;
-    
+
         &:hover {
-          background-color: darken(#28a745, 7%);
+          background-color: #1e7e34; 
         }
-      }
+      }     
     
       .btn-cancelar {
-        background-color: #9da3a8; 
-        color: white;
-    
+        background-color: #9da3a8;
+        color: #2c2c2c; 
+
         &:hover {
           background-color: darken(#9da3a8, 5%);
         }
@@ -128,6 +135,11 @@ $button-text: white;
         border: 1px solid $primary-color;
       }
     }
+
+    button:focus {
+      outline: 2px solid $primary-color;
+      box-shadow: 0 0 0 2px rgba(0, 82, 204, 0.4);
+    }
   }
 }
 
@@ -143,7 +155,7 @@ input.ng-invalid.ng-dirty {
 }
 
 .error-msg {
-  color: #ff1e1e;
+  color: $error-color;
   font-size: 0.75rem;
   margin-top: 4px;
 }
@@ -162,6 +174,13 @@ textarea {
     border-color: #0052cc;
     outline: none;
   }
+}
+
+.footer {
+  background-color: #c62828; 
+  color: #ffffff;            
+  text-align: center;
+  padding: 20px;
 }
 
 @keyframes fadeIn {

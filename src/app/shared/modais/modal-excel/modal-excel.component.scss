@@ -17,16 +17,24 @@
 
   button {
     min-width: 150px;
+    font-weight: 600;
+    margin-top: 10px;
+
+    &:hover,
+    &:focus-visible {
+      outline: 2px solid #0052cc;
+      outline-offset: 2px;
+    }
   }
 }
 
 .status {
   text-align: center;
   font-size: 0.95rem;
-  color: #444;
+  color: #2c2c2c; 
 
   .upload-ok {
-    color: #28a745;
+    color: #1e7e34; 
     font-weight: bold;
     margin-top: 0.3rem;
   }
@@ -35,7 +43,7 @@
 h2[mat-dialog-title] {
   text-align: center;
   font-size: 1.4rem;
-  color: #333;
+  color: #222; 
   margin-bottom: 0.5rem;
 }
 
@@ -47,5 +55,11 @@ mat-dialog-actions {
   button {
     min-width: 120px;
     font-weight: 600;
+
+    &:hover,
+    &:focus-visible {
+      outline: 2px solid #0052cc;
+      outline-offset: 2px;
+    }
   }
 }

@@ -1,8 +1,29 @@
-<div mat-dialog-content [@fadeIn]>
-  <h2>Realizado com Sucesso!</h2>
-  <p>Deseja voltar para a Home ou permanecer na mesma tela?</p>
+<div
+  role="dialog"
+  aria-labelledby="modal-sucesso-titulo"
+  aria-describedby="modal-sucesso-descricao"
+  tabindex="-1"
+  mat-dialog-content
+  [@fadeIn]
+>
+  <h2 id="modal-sucesso-titulo">Realizado com Sucesso!</h2>
+  <p id="modal-sucesso-descricao">
+    Deseja voltar para a Home ou permanecer na mesma tela?
+  </p>
 </div>
-<div mat-dialog-actions>
-  <button mat-button (click)="irParaHome()" >Home</button>
-  <button mat-button (click)="novoCadastro()">Permanecer</button>
+<div mat-dialog-actions class="modal-actions">
+  <button
+    mat-button
+    (click)="irParaHome()"
+    aria-label="Voltar para a página inicial"
+  >
+    Home
+  </button>
+  <button
+    mat-button
+    (click)="novoCadastro()"
+    aria-label="Permanecer na página atual para novo cadastro"
+  >
+    Permanecer
+  </button>
 </div>

@@ -1,16 +1,20 @@
-<mat-toolbar>
-  <span class="titulo-logo">MR</span>
+<mat-toolbar role="navigation" aria-label="Menu principal">
+  <span class="titulo-logo" aria-label="Magazine Rufino">MR</span>
   <span class="spacer"></span>
-  <button mat-button routerLink="/cadastro">Cadastro de Produtos</button>
-  <button mat-button routerLink="/precificacao">Precificação de Produtos</button>
+  <button mat-button routerLink="/cadastro" aria-label="Ir para o cadastro de produtos">Cadastro de Produtos</button>
+  <button mat-button routerLink="/precificacao" aria-label="Ir para a página de precificação de produtos">Precificação de Produtos</button>
 </mat-toolbar>
-<div class="home-content">
-  <h1>
-    <span>Bem-vindo</span><br />
-    <span>ao site de</span><br />
-    <span>cadastro</span> e <span>precificação</span> dos produtos
-  </h1>
-</div>
-<footer class="footer">
+
+<main id="conteudo-principal" tabindex="-1">
+  <div class="home-content">
+    <h1>
+      <span>Bem-vindo</span><br />
+      <span>ao site de</span><br />
+      <span>cadastro</span> e <span>precificação</span> dos produtos
+    </h1>
+  </div>
+</main>
+
+<footer class="footer" role="contentinfo">
   <p>© {{currentYear}} Magazine Rufino.</p>
 </footer>

@@ -1,7 +1,8 @@
-<div mat-dialog-content [@fadeIn]>
-  <h2>Falha na operação!</h2>
-  <p>Por favor tentar novamente mais tarde!</p>
+<div mat-dialog-content [@fadeIn] role="alertdialog" aria-labelledby="erroTitulo" aria-describedby="erroDescricao">
+  <h2 id="erroTitulo" tabindex="-1">Falha na operação!</h2>
+  <p id="erroDescricao">Por favor, tente novamente mais tarde.</p>
 </div>
+
 <div mat-dialog-actions>
-  <button mat-button (click)="fecharModal()">Ok</button>
+  <button mat-button color="warn" (click)="fecharModal()">Ok</button>
 </div>

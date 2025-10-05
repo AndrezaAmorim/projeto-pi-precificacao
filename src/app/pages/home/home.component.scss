@@ -21,9 +21,16 @@ body {
   font-size: 28px;
   font-weight: normal;
   line-height: 1.4;
-  color: #7f7f7f; 
+  color: #2c2c2c; 
   opacity: 0;
   animation: slideUp 1s ease-out forwards;
+}
+
+.footer {
+  background-color: #c62828; 
+  color: #ffffff;            
+  text-align: center;
+  padding: 20px;
 }
 
 /* Animações suaves */

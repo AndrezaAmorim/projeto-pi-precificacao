@@ -1,7 +1,22 @@
-<div mat-dialog-content [@fadeIn]>
-  <h2>Produto não encontrado!</h2>
-  <p>Por favor verifique o código digitado ou se o produto esta cadastrado!</p>
+<div
+  mat-dialog-content
+  [@fadeIn]
+  role="alertdialog"
+  aria-labelledby="naoEncontradoTitulo"
+  aria-describedby="naoEncontradoDescricao"
+>
+  <h2 id="naoEncontradoTitulo">Produto não encontrado!</h2>
+  <p id="naoEncontradoDescricao">
+    Por favor, verifique o código digitado ou se o produto está cadastrado!
+  </p>
 </div>
-<div mat-dialog-actions>
-  <button mat-button (click)="fecharModal()">Ok</button>
-</div>
+
+<mat-dialog-actions class="modal-actions">
+  <button
+    mat-button
+    (click)="fecharModal()"
+    cdkFocusInitial
+  >
+    Ok
+  </button>
+</mat-dialog-actions>

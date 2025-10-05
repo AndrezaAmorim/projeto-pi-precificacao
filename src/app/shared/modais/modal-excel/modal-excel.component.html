@@ -1,8 +1,14 @@
-<h2 mat-dialog-title>Importar Arquivo Excel</h2>
+<h2 mat-dialog-title id="excel-dialog-title">Importar Arquivo Excel</h2>
 
-<mat-dialog-content class="form-container">
-  <div class="file-actions">
-    <button mat-stroked-button color="primary" (click)="baixarModelo()">
+<mat-dialog-content class="form-container" role="form" aria-labelledby="excel-dialog-title">
+  <div class="file-actions" role="group" aria-label="Ações para importação de arquivo Excel">
+    <button
+      mat-stroked-button
+      color="primary"
+      type="button"
+      (click)="baixarModelo()"
+      aria-label="Baixar modelo de planilha Excel"
+    >
       Baixar Modelo
     </button>
 
@@ -10,29 +16,45 @@
       type="file"
       accept=".xlsx, .xls"
       id="uploadExcel"
-      hidden
       (change)="onFileSelected($event)"
+      [attr.aria-describedby]="nomeArquivo ? 'arquivo-selecionado' : null"
+      aria-label="Selecionar arquivo Excel para upload"
+      hidden
     />
-    <button mat-flat-button color="accent" (click)="abrirFileInput()">
+
+    <button
+      mat-flat-button
+      color="accent"
+      type="button"
+      (click)="abrirFileInput()"
+      aria-controls="uploadExcel"
+      aria-label="Fazer upload do arquivo Excel"
+    >
       Upload Excel
     </button>
   </div>
 
-  <div class="status" *ngIf="nomeArquivo">
+  <div class="status" *ngIf="nomeArquivo" id="arquivo-selecionado" role="status" aria-live="polite">
     <p><strong>Arquivo:</strong> {{ nomeArquivo }}</p>
     <p class="upload-ok">✅ Upload concluído!</p>
   </div>
 </mat-dialog-content>
 
 <mat-dialog-actions align="end">
-  <button mat-button mat-dialog-close>Cancelar</button>
+  <button mat-button mat-dialog-close type="button" aria-label="Cancelar importação">
+    Cancelar
+  </button>
+
   <button
     mat-flat-button
     color="primary"
+    type="button"
     (click)="enviarArquivo()"
     [disabled]="!arquivoSelecionado"
+    aria-label="Enviar arquivo Excel para importação"
   >
     Enviar Arquivo
   </button>
 </mat-dialog-actions>
+
 <app-loading *ngIf="loading"></app-loading>

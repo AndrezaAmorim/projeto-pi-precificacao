@@ -1,7 +1,9 @@
-<div class="loading-overlay">
+<div class="loading-overlay" role="status" aria-live="polite" aria-label="Carregando, por favor aguarde.">
   <mat-progress-spinner
     color="primary"
     mode="indeterminate"
     diameter="50"
+    aria-hidden="true"
   ></mat-progress-spinner>
+  <span class="visually-hidden">Carregando, por favor aguarde.</span>
 </div>

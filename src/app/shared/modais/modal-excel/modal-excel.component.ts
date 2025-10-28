@@ -43,28 +43,15 @@ export class ModalExcelComponent {
   }
 
   baixarModelo(): void {
-    const baseHref = document.getElementsByTagName('base')[0].getAttribute('href') || '';
-    const fileUrl = `${baseHref}assets/modeloCadastro.xlsx`;
-
-    fetch(fileUrl)
-        .then(response => {
-            if (!response.ok) {
-            throw new Error('Erro ao buscar o arquivo');
-        }
-        return response.blob();
-    })
-    .then(blob => {
-        const url = window.URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = 'modeloCadastro.xlsx';
-        a.click();
-        window.URL.revokeObjectURL(url);
-    })
-    .catch(error => {
-        console.error('Erro ao baixar o arquivo:', error);
-    });
+    const link = document.createElement('a');
+    link.href = 'assets/modeloCadastro.xlsx'; 
+    link.download = 'modeloCadastro.xlsx';
+    link.style.display = 'none';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   }
+
 
   enviarArquivo(): void {
     if (!this.arquivoSelecionado) return;

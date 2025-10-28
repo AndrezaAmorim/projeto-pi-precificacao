@@ -1,12 +1,12 @@
-name: Angular Build & Deploy to GitHub Pages
+name: Build & Deploy Angular to GitHub Pages
 
 on:
   push:
     branches:
-      - main
+      - main  # Toda vez que houver push na main
 
 jobs:
-  build-deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -28,4 +28,9 @@ jobs:
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist/projeto-pi-precificacao
+          publish_dir: ./dist/browser   
+          publish_branch: gh-pages      
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
+          force_orphan: true            
+          keep_files: false             

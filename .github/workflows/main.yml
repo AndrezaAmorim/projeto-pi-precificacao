@@ -3,7 +3,7 @@ name: Build & Deploy Angular to GitHub Pages
 on:
   push:
     branches:
-      - main  # Toda vez que houver push na main
+      - main 
 
 jobs:
   build-and-deploy:

@@ -3,7 +3,7 @@ name: Build & Deploy Angular to GitHub Pages
 on:
   push:
     branches:
-      - main 
+      - main
 
 jobs:
   build-and-deploy:
@@ -22,15 +22,16 @@ jobs:
         run: npm ci
 
       - name: Build Angular project
-        run: npm run build --prod
+        run: |
+          npx ng build --output-path=dist --base-href="/projeto-pi-precificacao/"
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist/browser   
-          publish_branch: gh-pages      
+          publish_dir: ./dist        # aqui é a mesma pasta que você usou no build
+          publish_branch: gh-pages
           user_name: 'github-actions[bot]'
           user_email: 'github-actions[bot]@users.noreply.github.com'
-          force_orphan: true            
-          keep_files: false             
+          force_orphan: true
+          keep_files: false

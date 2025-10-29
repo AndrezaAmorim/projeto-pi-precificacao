@@ -21,15 +21,18 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Clean dist folder
+        run: rm -rf dist
+
       - name: Build Angular project
         run: npx ng build --configuration production --base-href=/projeto-pi-precificacao/
 
       - name: Copy index.html to 404.html
         run: cp dist/projeto-pi-precificacao/browser/index.html dist/projeto-pi-precificacao/browser/404.html
-        
-      - name: Disable Jekyll on GitHub Pages
-        run: touch dist/projeto-pi-precificacao/browser/.nojekyll
 
+      - name: Create .nojekyll
+        run: touch dist/projeto-pi-precificacao/browser/.nojekyll
+        
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:

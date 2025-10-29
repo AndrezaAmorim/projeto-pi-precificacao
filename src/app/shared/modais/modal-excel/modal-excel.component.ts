@@ -43,31 +43,29 @@ export class ModalExcelComponent {
   }
 
   baixarModelo(): void {
-    const fileUrl = 'assets/modeloCadastro.xlsx';
+    const baseHref = document.querySelector('base')?.getAttribute('href') ?? '/';
+    const fileUrl = `${baseHref}assets/modeloCadastro.xlsx`;
 
     fetch(fileUrl)
       .then(response => {
-        if (!response.ok) {
-          throw new Error(`Erro ao baixar arquivo: ${response.statusText}`);
-        }
-        return response.arrayBuffer(); // ← lê como binário, não texto
+        if (!response.ok) throw new Error(`Erro ao baixar: ${response.statusText}`);
+        return response.arrayBuffer();
       })
       .then(buffer => {
         const blob = new Blob([buffer], {
           type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
         });
-        const blobUrl = window.URL.createObjectURL(blob);
+        const url = window.URL.createObjectURL(blob);
 
-        const link = document.createElement('a');
-        link.href = blobUrl;
-        link.download = 'modeloCadastro.xlsx';
-        link.click();
-
-        window.URL.revokeObjectURL(blobUrl);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'modeloCadastro.xlsx';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(url);
       })
-      .catch(err => {
-        console.error('Erro ao baixar modelo:', err);
-      });
+      .catch(error => console.error('Erro ao baixar modelo:', error));
   }
 
   enviarArquivo(): void {

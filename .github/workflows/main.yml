@@ -24,27 +24,14 @@ jobs:
       - name: Build Angular project
         run: npx ng build --configuration production --base-href=/projeto-pi-precificacao/
 
-      - name: Find build output
-        run: ls -R dist
-
       - name: Copy index.html to 404.html
-        run: |
-          if [ -f dist/projeto-pi-precificacao/index.html ]; then
-            cp dist/projeto-pi-precificacao/index.html dist/projeto-pi-precificacao/404.html
-          elif [ -f dist/browser/index.html ]; then
-            cp dist/browser/index.html dist/browser/404.html
-          elif [ -f dist/index.html ]; then
-            cp dist/index.html dist/404.html
-          else
-            echo "index.html not found in dist folder"
-            exit 1
-          fi
+        run: cp dist/projeto-pi-precificacao/browser/index.html dist/projeto-pi-precificacao/browser/404.html
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GH_PAT }}
-          publish_dir: ./dist
+          publish_dir: ./dist/projeto-pi-precificacao/browser
           publish_branch: gh-pages
           user_name: 'github-actions[bot]'
           user_email: 'github-actions[bot]@users.noreply.github.com'

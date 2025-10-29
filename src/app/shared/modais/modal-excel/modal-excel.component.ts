@@ -43,14 +43,31 @@ export class ModalExcelComponent {
   }
 
   baixarModelo(): void {
-    const baseHref = document.getElementsByTagName('base')[0].getAttribute('href') || '';
-    const link = document.createElement('a');
-    link.href = `${baseHref}assets/modeloCadastro.xlsx`;
-    link.download = 'modeloCadastro.xlsx';
-    link.style.display = 'none';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    const fileUrl = 'assets/modeloCadastro.xlsx';
+
+    fetch(fileUrl)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`Erro ao baixar arquivo: ${response.statusText}`);
+        }
+        return response.arrayBuffer(); // ← lê como binário, não texto
+      })
+      .then(buffer => {
+        const blob = new Blob([buffer], {
+          type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+        });
+        const blobUrl = window.URL.createObjectURL(blob);
+
+        const link = document.createElement('a');
+        link.href = blobUrl;
+        link.download = 'modeloCadastro.xlsx';
+        link.click();
+
+        window.URL.revokeObjectURL(blobUrl);
+      })
+      .catch(err => {
+        console.error('Erro ao baixar modelo:', err);
+      });
   }
 
   enviarArquivo(): void {

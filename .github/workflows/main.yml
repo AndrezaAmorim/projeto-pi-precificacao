@@ -26,6 +26,9 @@ jobs:
 
       - name: Copy index.html to 404.html
         run: cp dist/projeto-pi-precificacao/browser/index.html dist/projeto-pi-precificacao/browser/404.html
+        
+      - name: Disable Jekyll on GitHub Pages
+        run: touch dist/projeto-pi-precificacao/browser/.nojekyll
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4

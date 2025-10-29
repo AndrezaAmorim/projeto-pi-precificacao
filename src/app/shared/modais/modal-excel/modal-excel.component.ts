@@ -43,15 +43,15 @@ export class ModalExcelComponent {
   }
 
   baixarModelo(): void {
+    const baseHref = document.getElementsByTagName('base')[0].getAttribute('href') || '';
     const link = document.createElement('a');
-    link.href = 'assets/modeloCadastro.xlsx'; 
+    link.href = `${baseHref}assets/modeloCadastro.xlsx`;
     link.download = 'modeloCadastro.xlsx';
     link.style.display = 'none';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
   }
-
 
   enviarArquivo(): void {
     if (!this.arquivoSelecionado) return;

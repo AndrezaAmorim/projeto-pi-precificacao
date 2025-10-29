@@ -10,34 +10,41 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      
       - name: Checkout repository
         uses: actions/checkout@v3
 
-     
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '20'
 
-     
       - name: Install dependencies
         run: npm install
 
-    
       - name: Build Angular project
-        run: npx ng build --configuration production --output-path=dist/projeto-pi-precificacao --base-href=/projeto-pi-precificacao/
+        run: npx ng build --configuration production --base-href=/projeto-pi-precificacao/
 
-     
+      - name: Find build output
+        run: ls -R dist
+
       - name: Copy index.html to 404.html
-        run: cp dist/projeto-pi-precificacao/index.html dist/projeto-pi-precificacao/404.html
+        run: |
+          if [ -f dist/projeto-pi-precificacao/index.html ]; then
+            cp dist/projeto-pi-precificacao/index.html dist/projeto-pi-precificacao/404.html
+          elif [ -f dist/browser/index.html ]; then
+            cp dist/browser/index.html dist/browser/404.html
+          elif [ -f dist/index.html ]; then
+            cp dist/index.html dist/404.html
+          else
+            echo "index.html not found in dist folder"
+            exit 1
+          fi
 
-     
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
-          github_token: ${{ secrets.GH_PAT }}          
-          publish_dir: ./dist/projeto-pi-precificacao 
+          github_token: ${{ secrets.GH_PAT }}
+          publish_dir: ./dist
           publish_branch: gh-pages
           user_name: 'github-actions[bot]'
           user_email: 'github-actions[bot]@users.noreply.github.com'

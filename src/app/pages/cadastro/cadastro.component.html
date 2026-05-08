@@ -382,7 +382,8 @@
         </button>
         <button
           class="btn-salvar"
-          type="submit"
+          type="button"
+          (click)="excluir()"
           [disabled]="!botoesHabilitados"
           aria-label="Excluir produto">
           Excluir

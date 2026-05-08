@@ -169,6 +169,12 @@ export class CadastroComponent implements OnInit, OnDestroy{
     this.router.navigate(['/']);
   }
 
+  excluir() {
+    if (this.cadastroForm.valid) {
+      
+    }
+  }
+
   abrirModalExcel() {
     this.dialog.open(ModalExcelComponent, {
       width: '500px',           

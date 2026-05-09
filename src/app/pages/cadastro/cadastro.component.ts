@@ -173,7 +173,7 @@ export class CadastroComponent implements OnInit, OnDestroy{
     if (this.cadastroForm.valid) {
       this.loading = true;
       const form = this.cadastroForm.getRawValue();
-      this.subscription.add(this.cadastroService.ExcluirProduto(form)
+      this.subscription.add(this.cadastroService.excluirProduto(form)
       .subscribe({ 
         next: (data) => {
           this.loading = false;

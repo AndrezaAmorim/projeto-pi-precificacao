@@ -171,7 +171,25 @@ export class CadastroComponent implements OnInit, OnDestroy{
 
   excluir() {
     if (this.cadastroForm.valid) {
-      
+      this.loading = true;
+      const form = this.cadastroForm.getRawValue();
+      this.subscription.add(this.cadastroService.ExcluirProduto(form)
+      .subscribe({ 
+        next: (data) => {
+          this.loading = false;
+          if (data) {
+            this.abrirModalSucesso();
+          } else {
+            this.abrirModalFalha();
+          }
+        },
+        error: () => {
+          this.loading = false;
+          this.abrirModalFalha();
+        }
+      }));
+    } else {
+      this.cadastroForm.markAllAsTouched();
     }
   }
 

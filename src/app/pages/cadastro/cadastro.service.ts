@@ -20,6 +20,14 @@ export class CadastroService {
     );
   }
 
+  excluirProduto(form: any): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/Excluir`, form).pipe(  
+      catchError(error => {
+        return of(null);  
+      })
+    );
+  }
+
   buscarProdutoPorSku(sku: string): Observable<any> {
     const params = new HttpParams().set('SKU', sku); 
     return this.http.get<any>(`${this.apiUrl}/BuscarProdutoPorSku`, { params }).pipe(  
